@@ -8,6 +8,10 @@
 import Foundation
 
 struct OffersPayload: Decodable {
+    let record: Record
+}
+
+struct Record: Decodable {
     let headerLogo: String
     let subscription: Subscription
 
@@ -22,7 +26,7 @@ struct Subscription: Decodable {
     let coverImage: String
     let subscribeTitle: String
     let subscribeSubtitle: String
-    let offers: [String: Offer]
+    let offers: Offers
     let benefits: [String]
     let disclaimer: String
 

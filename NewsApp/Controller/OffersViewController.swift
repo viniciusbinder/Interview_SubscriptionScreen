@@ -9,18 +9,53 @@ import UIKit
 import CoreData
 
 class OffersViewController: UIViewController {
-    private var provider: OffersProviderProtocol
-    private var offers: [Offer] = []
+    private var manager: OffersManager
 
-    private var context: NSManagedObjectContext? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return nil
-        }
-        return appDelegate.persistentContainer.viewContext
-    }
+    private let scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private let scrollContainer: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.spacing = 20
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private let headerImage: UIImageView = {
+        let view = UIImageView(image: nil)
+        view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        return view
+    }()
+
+    private let header: UIView = {
+        let view = UIView()
+        view.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        view.backgroundColor = .black
+        return view
+    }()
+
+    private let subview2: UIView = {
+        let view = UIView()
+        view.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        view.backgroundColor = UIColor.cyan
+        return view
+    }()
+
+    private let subview3: UIView = {
+        let view = UIView()
+        view.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        view.backgroundColor = UIColor.gray
+        return view
+    }()
 
     init(provider: OffersProvider) {
-        self.provider = provider
+        self.manager = OffersManager(provider: provider)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -32,64 +67,48 @@ class OffersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        fetchPayload()
-    }
+        view.backgroundColor = .white
 
-    /// Fetches screen data payload.
-    /// If offers are the same as stored, use stored offers,
-    /// else save the new offers and use them instead.
-    private func fetchPayload() {
+        setupScrollView()
+
         Task {
-            let storedOffers = loadOffers()
             do {
-                let payload = try await provider.fetchOffers()
-                let fetchedOffers = payload.subscription.offers.map { $0.value }
+                let config = try await manager.loadViewConfiguration()
 
-                if fetchedOffers == storedOffers {
-                    self.offers = storedOffers
-                } else {
-                    self.offers = fetchedOffers
-                    saveOffers(fetchedOffers)
-                }
-                self.offers = offers
+                self.headerImage.loadFromURL(config.headerLogo)
+
+                // TODO: assign values to views
             } catch {
-                print(error.localizedDescription)
-                self.offers = storedOffers
+                // TODO: handle error, assign default values to views
             }
         }
     }
 
-    private func saveOffers(_ offers: [Offer]) {
-        guard let context else {
-            print("Failed to save offers: Missing container context")
-            return
-        }
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollContainer)
 
-        for offer in offers {
-            let entity = Offer(context: context)
-            entity.information = offer.description
-            entity.price = offer.price
-        }
+        let margins = view.layoutMarginsGuide
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
 
-        do {
-            try context.save()
-        } catch {
-            print("Failed to save offers")
-        }
+        scrollContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        scrollContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+        scrollContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        scrollContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        scrollContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+
+        configureContainerView()
     }
 
-    private func loadOffers() -> [Offer] {
-        guard let context else {
-            print("Failed to load offers: Missing container context")
-            return []
-        }
-
-        let request: NSFetchRequest<Offer> = Offer.fetchRequest()
-        do {
-            return try context.fetch(request)
-        } catch {
-            print("Failed to load offers")
-            return []
-        }
+    private func configureContainerView() {
+        header.addSubview(headerImage)
+        NSLayoutConstraint.activate([
+            headerImage.centerXAnchor.constraint(equalTo: header.centerXAnchor),
+            headerImage.centerYAnchor.constraint(equalTo: header.centerYAnchor)
+        ])
+        scrollContainer.addArrangedSubview(header)
     }
 }
