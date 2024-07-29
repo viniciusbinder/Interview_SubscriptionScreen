@@ -21,6 +21,8 @@
 		565893B72C58202500D707FB /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565893B62C58202500D707FB /* UIImageView.swift */; };
 		565893B92C582EF500D707FB /* OffersViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565893B82C582EF500D707FB /* OffersViewConfiguration.swift */; };
 		56810BB82C58329F002AAC62 /* OffersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BB72C58329F002AAC62 /* OffersManager.swift */; };
+		56810BBB2C584ABF002AAC62 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BBA2C584ABF002AAC62 /* TitleView.swift */; };
+		56810BBD2C584CAA002AAC62 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BBC2C584CAA002AAC62 /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		565893B62C58202500D707FB /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		565893B82C582EF500D707FB /* OffersViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewConfiguration.swift; sourceTree = "<group>"; };
 		56810BB72C58329F002AAC62 /* OffersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersManager.swift; sourceTree = "<group>"; };
+		56810BBA2C584ABF002AAC62 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		56810BBC2C584CAA002AAC62 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +102,7 @@
 		5607289F2C580B6D0092D009 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				565893B82C582EF500D707FB /* OffersViewConfiguration.swift */,
-				56810BB72C58329F002AAC62 /* OffersManager.swift */,
-				56401A1A2C57E80600D75659 /* OffersViewController.swift */,
+				56810BB92C584AA2002AAC62 /* Offers */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -130,7 +132,6 @@
 			children = (
 				56401A162C57E80600D75659 /* AppDelegate.swift */,
 				56401A182C57E80600D75659 /* SceneDelegate.swift */,
-				565893B02C58103400D707FB /* Entity */,
 				5607289F2C580B6D0092D009 /* Controller */,
 				560728912C57F19B0092D009 /* Network */,
 				565893B52C58200200D707FB /* Extension */,
@@ -159,19 +160,32 @@
 			path = NewsAppUITests;
 			sourceTree = "<group>";
 		};
-		565893B02C58103400D707FB /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
-			sourceTree = "<group>";
-		};
 		565893B52C58200200D707FB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				565893B62C58202500D707FB /* UIImageView.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		56810BB92C584AA2002AAC62 /* Offers */ = {
+			isa = PBXGroup;
+			children = (
+				56401A1A2C57E80600D75659 /* OffersViewController.swift */,
+				565893B82C582EF500D707FB /* OffersViewConfiguration.swift */,
+				56810BB72C58329F002AAC62 /* OffersManager.swift */,
+				56810BBE2C584CCA002AAC62 /* Views */,
+			);
+			path = Offers;
+			sourceTree = "<group>";
+		};
+		56810BBE2C584CCA002AAC62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				56810BBA2C584ABF002AAC62 /* TitleView.swift */,
+				56810BBC2C584CAA002AAC62 /* HeaderView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,8 +325,10 @@
 				56401A172C57E80600D75659 /* AppDelegate.swift in Sources */,
 				560728932C57F8A40092D009 /* OffersNetworkProvider.swift in Sources */,
 				56401A212C57E80600D75659 /* NewsApp.xcdatamodeld in Sources */,
+				56810BBD2C584CAA002AAC62 /* HeaderView.swift in Sources */,
 				56401A192C57E80600D75659 /* SceneDelegate.swift in Sources */,
 				565893B92C582EF500D707FB /* OffersViewConfiguration.swift in Sources */,
+				56810BBB2C584ABF002AAC62 /* TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
