@@ -7,6 +7,7 @@
 - Delegate Pattern for selecting the offer
 - Mock payload for when network fetching fails
 - Video and GIF of the entire functionality
+- Zero constraint console warnings
 - ✅ Full set of UI tests using XCUITest
 
 ### Showcase
