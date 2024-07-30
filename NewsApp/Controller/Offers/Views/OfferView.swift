@@ -8,6 +8,12 @@
 import UIKit
 
 class OfferView: UIView {
+    weak var delegate: OfferSelectionDelegate?
+    
+    private(set) var price: Double = 0.0
+    
+    private var isSelected: Bool = false
+    
     private let priceLabel: UILabel = {
         let view = UILabel()
         view.text = ""
@@ -29,13 +35,17 @@ class OfferView: UIView {
         return view
     }()
     
-    private let toggle: UISwitch = {
-        let view = UISwitch()
-        view.isOn = true
-        view.addTarget(OfferView.self, action: #selector(switchToggle(_:)), for: .valueChanged)
+    private let checkbox: UIImageView = {
+        let view = UIImageView(image: nil)
+        view.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        view.widthAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        view.tintColor = .black
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private let checkedImage = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(.black)
+    private let uncheckedImage = UIImage(systemName: "circle")!.withTintColor(.black)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,23 +58,29 @@ class OfferView: UIView {
     }
     
     private func setupView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        addGestureRecognizer(tapGesture)
+        
         addSubview(priceLabel)
         addSubview(descriptionLabel)
-        addSubview(toggle)
+        addSubview(checkbox)
 
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: topAnchor),
             descriptionLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 4),
-            toggle.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-            toggle.bottomAnchor.constraint(equalTo: bottomAnchor),
+            checkbox.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            checkbox.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             priceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            toggle.centerXAnchor.constraint(equalTo: centerXAnchor),
+            checkbox.centerXAnchor.constraint(equalTo: centerXAnchor),
         ])
+        
+        setSelection(false)
     }
     
     func setPrice(_ price: Double) {
+        self.price = price
         priceLabel.text = "$\(price)"
     }
     
@@ -72,11 +88,15 @@ class OfferView: UIView {
         descriptionLabel.text = text
     }
     
-    @objc func switchToggle(_ sender: UISwitch) {
-        if sender.isOn {
-            print("Switch is ON")
-        } else {
-            print("Switch is OFF")
+    func setSelection(_ selection: Bool) {
+        isSelected = selection
+        checkbox.image = isSelected ? checkedImage : uncheckedImage
+    }
+    
+    @objc func tapped() {
+        if !isSelected {
+            setSelection(true)
+            delegate?.selectOffer(price)
         }
     }
 }

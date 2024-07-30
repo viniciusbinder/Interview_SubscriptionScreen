@@ -11,6 +11,8 @@ import CoreData
 class OffersViewController: UIViewController {
     private var manager: OffersManager
 
+    private var selectedOffer: Double?
+
     // MARK: Views
 
     private let scrollView: UIScrollView = {
@@ -43,6 +45,8 @@ class OffersViewController: UIViewController {
 
     private let benefitsView = BenefitsView()
 
+    private let subscribeView = SubscribeView()
+
     // MARK: Initialization
 
     init(provider: OffersProvider) {
@@ -69,20 +73,22 @@ class OffersViewController: UIViewController {
             do {
                 let config = try await manager.loadViewConfiguration()
 
-                self.header.setImage(config.headerLogo)
-                self.coverImage.loadFromURL(config.coverImage)
-                self.titleView.setTitle(config.subscribeTitle)
-                self.titleView.setSubtitle(config.subscribeSubtitle)
+                header.setImage(config.headerLogo)
+                coverImage.loadFromURL(config.coverImage)
+                titleView.setTitle(config.subscribeTitle)
+                titleView.setSubtitle(config.subscribeSubtitle)
 
                 let offer1 = config.offers.offer1, offer2 = config.offers.offer2
-                self.selectionView.setOffer1(offer1.price, description: offer1.description)
-                self.selectionView.setOffer2(offer2.price, description: offer2.description)
+                selectionView.setOffer1(offer1.price, description: offer1.description)
+                selectionView.setOffer2(offer2.price, description: offer2.description)
+                selectionView.setSelection(offer1.price, true)
+                self.selectedOffer = offer1.price
 
-                self.benefitsView.setBenefits(config.benefits)
-
-                // TODO: assign values to views
+                benefitsView.setBenefits(config.benefits)
+                subscribeView.setDisclaimer(config.disclaimer)
             } catch {
-                // TODO: handle error, assign default values to views
+                print(error)
+                // TODO: show offer unavailability screen
             }
         }
     }
@@ -113,11 +119,42 @@ class OffersViewController: UIViewController {
         containerView.addArrangedSubview(titleView)
         containerView.addArrangedSubview(selectionView)
         containerView.addArrangedSubview(benefitsView)
+        containerView.addArrangedSubview(subscribeView)
 
-        let label = UILabel()
-        label.text = "––––––––––––––––––––––––"
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addArrangedSubview(label)
+        selectionView.delegate = self
+        subscribeView.buttonAction = {
+            self.showConfirmOfferAlert()
+        }
+    }
+}
+
+protocol OfferSelectionDelegate: AnyObject {
+    func selectOffer(_ price: Double)
+}
+
+extension OffersViewController: OfferSelectionDelegate {
+    func selectOffer(_ price: Double) {
+        selectedOffer = price
+        selectionView.setSelection(price, true)
+    }
+}
+
+extension OffersViewController {
+    func showConfirmOfferAlert() {
+        guard let selectedOffer else { return }
+
+        let title = "Subscription Confirmation"
+        let message = "Buy $\(selectedOffer) subscription?"
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
+            print("Subscription confirmed")
+            // TODO: dismiss controller
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 }

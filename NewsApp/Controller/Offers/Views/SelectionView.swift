@@ -8,6 +8,13 @@
 import UIKit
 
 class SelectionView: UIView {
+    weak var delegate: OfferSelectionDelegate? {
+        didSet {
+            offerView1.delegate = delegate
+            offerView2.delegate = delegate
+        }
+    }
+    
     private let offerView1: OfferView = {
         let view = OfferView()
         view.widthAnchor.constraint(equalToConstant: 130).isActive = true
@@ -67,5 +74,15 @@ class SelectionView: UIView {
     func setOffer2(_ price: Double, description: String) {
         offerView2.setPrice(price)
         offerView2.setDescription(description)
+    }
+    
+    func setSelection(_ price: Double, _ selection: Bool) {
+        if price == offerView1.price {
+            offerView1.setSelection(true)
+            offerView2.setSelection(false)
+        } else {
+            offerView1.setSelection(false)
+            offerView2.setSelection(true)
+        }
     }
 }

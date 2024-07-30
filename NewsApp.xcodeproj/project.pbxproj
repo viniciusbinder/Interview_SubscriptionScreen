@@ -27,6 +27,9 @@
 		56810BC42C585AB0002AAC62 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BC32C585AB0002AAC62 /* SelectionView.swift */; };
 		56810BC62C58642C002AAC62 /* OffersMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BC52C58642C002AAC62 /* OffersMockProvider.swift */; };
 		56810BC82C587754002AAC62 /* BenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BC72C587754002AAC62 /* BenefitsView.swift */; };
+		56810BCC2C58897C002AAC62 /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BCB2C58897C002AAC62 /* SubscribeView.swift */; };
+		56810BCE2C588D3A002AAC62 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BCD2C588D3A002AAC62 /* String.swift */; };
+		56810BD02C58A129002AAC62 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BCF2C58A129002AAC62 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,9 @@
 		56810BC32C585AB0002AAC62 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		56810BC52C58642C002AAC62 /* OffersMockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersMockProvider.swift; sourceTree = "<group>"; };
 		56810BC72C587754002AAC62 /* BenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsView.swift; sourceTree = "<group>"; };
+		56810BCB2C58897C002AAC62 /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
+		56810BCD2C588D3A002AAC62 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		56810BCF2C58A129002AAC62 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 		5607289F2C580B6D0092D009 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				56810BD12C58A12F002AAC62 /* Home */,
 				56810BB92C584AA2002AAC62 /* Offers */,
 			);
 			path = Controller;
@@ -173,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				565893B62C58202500D707FB /* UIImageView.swift */,
+				56810BCD2C588D3A002AAC62 /* String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -180,10 +188,10 @@
 		56810BB92C584AA2002AAC62 /* Offers */ = {
 			isa = PBXGroup;
 			children = (
+				56810BBE2C584CCA002AAC62 /* Views */,
 				56401A1A2C57E80600D75659 /* OffersViewController.swift */,
 				565893B82C582EF500D707FB /* OffersViewConfiguration.swift */,
 				56810BB72C58329F002AAC62 /* OffersManager.swift */,
-				56810BBE2C584CCA002AAC62 /* Views */,
 			);
 			path = Offers;
 			sourceTree = "<group>";
@@ -196,8 +204,17 @@
 				56810BC12C585663002AAC62 /* OfferView.swift */,
 				56810BC32C585AB0002AAC62 /* SelectionView.swift */,
 				56810BC72C587754002AAC62 /* BenefitsView.swift */,
+				56810BCB2C58897C002AAC62 /* SubscribeView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		56810BD12C58A12F002AAC62 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				56810BCF2C58A129002AAC62 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,14 +352,17 @@
 				56810BC42C585AB0002AAC62 /* SelectionView.swift in Sources */,
 				565893B42C5811E400D707FB /* OffersPayload.swift in Sources */,
 				565893B72C58202500D707FB /* UIImageView.swift in Sources */,
+				56810BD02C58A129002AAC62 /* HomeViewController.swift in Sources */,
 				56401A172C57E80600D75659 /* AppDelegate.swift in Sources */,
 				560728932C57F8A40092D009 /* OffersNetworkProvider.swift in Sources */,
 				56401A212C57E80600D75659 /* NewsApp.xcdatamodeld in Sources */,
 				56810BC82C587754002AAC62 /* BenefitsView.swift in Sources */,
 				56810BC22C585663002AAC62 /* OfferView.swift in Sources */,
 				56810BBD2C584CAA002AAC62 /* HeaderView.swift in Sources */,
+				56810BCC2C58897C002AAC62 /* SubscribeView.swift in Sources */,
 				56401A192C57E80600D75659 /* SceneDelegate.swift in Sources */,
 				565893B92C582EF500D707FB /* OffersViewConfiguration.swift in Sources */,
+				56810BCE2C588D3A002AAC62 /* String.swift in Sources */,
 				56810BBB2C584ABF002AAC62 /* TitleView.swift in Sources */,
 				56810BC62C58642C002AAC62 /* OffersMockProvider.swift in Sources */,
 			);

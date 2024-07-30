@@ -64,9 +64,9 @@ class BenefitsView: UIView {
         addSubview(benefitsView)
         
         NSLayoutConstraint.activate([
-            titleView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            titleView.topAnchor.constraint(equalTo: topAnchor, constant: 30),
             benefitsView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 10),
-            benefitsView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            benefitsView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             
             titleView.centerXAnchor.constraint(equalTo: centerXAnchor),
             benefitsView.centerXAnchor.constraint(equalTo: centerXAnchor),

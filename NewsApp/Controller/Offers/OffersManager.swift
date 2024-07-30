@@ -16,6 +16,10 @@ class OffersManager {
         self.provider = provider
     }
 
+    func setProvider(_ provider: OffersProvider) {
+        self.provider = provider
+    }
+
     /// Fetches screen data payload.
     /// If offers are the same as stored, use stored offers,
     /// else save the new offers and use them instead.
