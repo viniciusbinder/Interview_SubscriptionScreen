@@ -55,11 +55,11 @@ class SubscribeView: UIView {
             disclaimerText.trailingAnchor.constraint(equalTo: button.trailingAnchor, constant: -10),
         ])
         
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(subscribe), for: .touchUpInside)
         disclaimerText.delegate = self
     }
     
-    @objc func buttonTapped() {
+    @objc func subscribe() {
         if let buttonAction {
             buttonAction()
         }

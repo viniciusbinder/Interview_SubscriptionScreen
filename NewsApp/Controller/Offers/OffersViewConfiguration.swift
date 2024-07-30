@@ -70,9 +70,10 @@ struct Offers: Decodable, Equatable {
         self.offer2 = offer2
     }
 
-    init(from offers: [Offer]) {
-        let offer1 = SubscriptionOffer(from: offers.first!)
-        let offer2 = SubscriptionOffer(from: offers.last!)
+    init?(from offers: [Offer]) {
+        guard let first = offers.first, let last = offers.last else { return nil }
+        let offer1 = SubscriptionOffer(from: first)
+        let offer2 = SubscriptionOffer(from: last)
         self.init(offer1: offer1, offer2: offer2)
     }
 

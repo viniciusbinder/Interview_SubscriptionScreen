@@ -44,8 +44,8 @@ class OfferView: UIView {
         return view
     }()
     
-    private let checkedImage = UIImage(systemName: "checkmark.circle.fill")!.withTintColor(.black)
-    private let uncheckedImage = UIImage(systemName: "circle")!.withTintColor(.black)
+    private let checkedImage = UIImage(systemName: "checkmark.circle.fill")?.withTintColor(.black)
+    private let uncheckedImage = UIImage(systemName: "circle")?.withTintColor(.black)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

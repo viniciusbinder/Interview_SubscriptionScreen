@@ -18,9 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-        let offersProvider = OffersMockProvider()
-        let viewController = OffersViewController(provider: offersProvider)
-        window?.rootViewController = viewController
+        let homeViewController = HomeViewController()
+        let navigationController = UINavigationController(rootViewController: homeViewController)
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 

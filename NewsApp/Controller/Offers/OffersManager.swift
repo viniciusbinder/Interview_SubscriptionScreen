@@ -26,12 +26,9 @@ class OffersManager {
     func loadViewConfiguration() async throws -> OffersViewConfiguration {
         let payload = try await provider.fetchOffers()
         let fetchedOffers = payload.record.subscription.offers
-        let loadedOffers = await loadOffers()
-        if loadedOffers.isEmpty {
+        guard let storedOffers = Offers(from: await loadOffers()) else {
             return OffersViewConfiguration(from: payload)
         }
-
-        let storedOffers = Offers(from: loadedOffers)
         if fetchedOffers == storedOffers {
             return OffersViewConfiguration(from: payload, with: storedOffers)
         } else {

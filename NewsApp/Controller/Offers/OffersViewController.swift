@@ -30,7 +30,22 @@ class OffersViewController: UIViewController {
         return view
     }()
 
-    private let header = HeaderView()
+    private let backButton: UIButton = {
+        let view = UIButton(type: .system)
+        let configuration = UIImage.SymbolConfiguration(weight: .semibold)
+        let image = UIImage(systemName: "chevron.left")?.withConfiguration(configuration)
+        view.setImage(image, for: .normal)
+        view.tintColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.layer.zPosition = 100
+        return view
+    }()
+
+    private let header: HeaderView = {
+        let view = HeaderView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     private let coverImage: UIImageView = {
         let view = UIImageView(image: nil)
@@ -63,7 +78,9 @@ class OffersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
 
+        setupHeader()
         setupScrollView()
         loadConfiguration()
     }
@@ -93,6 +110,22 @@ class OffersViewController: UIViewController {
         }
     }
 
+    private func setupHeader() {
+        view.addSubview(header)
+        header.addSubview(backButton)
+
+        NSLayoutConstraint.activate([
+            header.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            header.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            header.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+
+            backButton.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 10),
+            backButton.centerYAnchor.constraint(equalTo: header.centerYAnchor),
+        ])
+
+        backButton.addTarget(self, action: #selector(popController), for: .touchUpInside)
+    }
+
     private func setupScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
@@ -100,7 +133,7 @@ class OffersViewController: UIViewController {
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: header.bottomAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -114,7 +147,6 @@ class OffersViewController: UIViewController {
     }
 
     private func configureContainerView() {
-        containerView.addArrangedSubview(header)
         containerView.addArrangedSubview(coverImage)
         containerView.addArrangedSubview(titleView)
         containerView.addArrangedSubview(selectionView)
@@ -126,10 +158,10 @@ class OffersViewController: UIViewController {
             self.showConfirmOfferAlert()
         }
     }
-}
 
-protocol OfferSelectionDelegate: AnyObject {
-    func selectOffer(_ price: Double)
+    @objc private func popController() {
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 extension OffersViewController: OfferSelectionDelegate {
@@ -148,8 +180,7 @@ extension OffersViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         let confirmAction = UIAlertAction(title: "Confirm", style: .default) { _ in
-            print("Subscription confirmed")
-            // TODO: dismiss controller
+            self.popController()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
 

@@ -30,6 +30,7 @@
 		56810BCC2C58897C002AAC62 /* SubscribeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BCB2C58897C002AAC62 /* SubscribeView.swift */; };
 		56810BCE2C588D3A002AAC62 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BCD2C588D3A002AAC62 /* String.swift */; };
 		56810BD02C58A129002AAC62 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BCF2C58A129002AAC62 /* HomeViewController.swift */; };
+		56810BD32C58A1EA002AAC62 /* OfferSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BD22C58A1EA002AAC62 /* OfferSelectionDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		56810BCB2C58897C002AAC62 /* SubscribeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribeView.swift; sourceTree = "<group>"; };
 		56810BCD2C588D3A002AAC62 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		56810BCF2C58A129002AAC62 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		56810BD22C58A1EA002AAC62 /* OfferSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferSelectionDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			children = (
 				56810BBE2C584CCA002AAC62 /* Views */,
 				56401A1A2C57E80600D75659 /* OffersViewController.swift */,
+				56810BD22C58A1EA002AAC62 /* OfferSelectionDelegate.swift */,
 				565893B82C582EF500D707FB /* OffersViewConfiguration.swift */,
 				56810BB72C58329F002AAC62 /* OffersManager.swift */,
 			);
@@ -365,6 +368,7 @@
 				56810BCE2C588D3A002AAC62 /* String.swift in Sources */,
 				56810BBB2C584ABF002AAC62 /* TitleView.swift in Sources */,
 				56810BC62C58642C002AAC62 /* OffersMockProvider.swift in Sources */,
+				56810BD32C58A1EA002AAC62 /* OfferSelectionDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
