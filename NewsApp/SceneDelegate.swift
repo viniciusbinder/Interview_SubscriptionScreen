@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 
-        let offersProvider = OffersNetworkProvider()
+        let offersProvider = OffersMockProvider()
         let viewController = OffersViewController(provider: offersProvider)
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()

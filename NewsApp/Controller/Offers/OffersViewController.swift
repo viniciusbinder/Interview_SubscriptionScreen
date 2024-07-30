@@ -11,6 +11,8 @@ import CoreData
 class OffersViewController: UIViewController {
     private var manager: OffersManager
 
+    // MARK: Views
+
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -30,11 +32,18 @@ class OffersViewController: UIViewController {
 
     private let coverImage: UIImageView = {
         let view = UIImageView(image: nil)
-        view.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        view.contentMode = .scaleAspectFit
+        view.heightAnchor.constraint(equalToConstant: 220).isActive = true
         return view
     }()
 
     private let titleView = TitleView()
+
+    private let selectionView = SelectionView()
+
+    private let benefitsView = BenefitsView()
+
+    // MARK: Initialization
 
     init(provider: OffersProvider) {
         self.manager = OffersManager(provider: provider)
@@ -45,6 +54,8 @@ class OffersViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: Setup
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +73,12 @@ class OffersViewController: UIViewController {
                 self.coverImage.loadFromURL(config.coverImage)
                 self.titleView.setTitle(config.subscribeTitle)
                 self.titleView.setSubtitle(config.subscribeSubtitle)
+
+                let offer1 = config.offers.offer1, offer2 = config.offers.offer2
+                self.selectionView.setOffer1(offer1.price, description: offer1.description)
+                self.selectionView.setOffer2(offer2.price, description: offer2.description)
+
+                self.benefitsView.setBenefits(config.benefits)
 
                 // TODO: assign values to views
             } catch {
@@ -84,7 +101,7 @@ class OffersViewController: UIViewController {
             containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
 
         configureContainerView()
@@ -94,5 +111,13 @@ class OffersViewController: UIViewController {
         containerView.addArrangedSubview(header)
         containerView.addArrangedSubview(coverImage)
         containerView.addArrangedSubview(titleView)
+        containerView.addArrangedSubview(selectionView)
+        containerView.addArrangedSubview(benefitsView)
+
+        let label = UILabel()
+        label.text = "––––––––––––––––––––––––"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addArrangedSubview(label)
     }
 }

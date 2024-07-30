@@ -23,6 +23,10 @@
 		56810BB82C58329F002AAC62 /* OffersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BB72C58329F002AAC62 /* OffersManager.swift */; };
 		56810BBB2C584ABF002AAC62 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BBA2C584ABF002AAC62 /* TitleView.swift */; };
 		56810BBD2C584CAA002AAC62 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BBC2C584CAA002AAC62 /* HeaderView.swift */; };
+		56810BC22C585663002AAC62 /* OfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BC12C585663002AAC62 /* OfferView.swift */; };
+		56810BC42C585AB0002AAC62 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BC32C585AB0002AAC62 /* SelectionView.swift */; };
+		56810BC62C58642C002AAC62 /* OffersMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BC52C58642C002AAC62 /* OffersMockProvider.swift */; };
+		56810BC82C587754002AAC62 /* BenefitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BC72C587754002AAC62 /* BenefitsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +67,10 @@
 		56810BB72C58329F002AAC62 /* OffersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersManager.swift; sourceTree = "<group>"; };
 		56810BBA2C584ABF002AAC62 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		56810BBC2C584CAA002AAC62 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		56810BC12C585663002AAC62 /* OfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferView.swift; sourceTree = "<group>"; };
+		56810BC32C585AB0002AAC62 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		56810BC52C58642C002AAC62 /* OffersMockProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersMockProvider.swift; sourceTree = "<group>"; };
+		56810BC72C587754002AAC62 /* BenefitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenefitsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				560728922C57F8A40092D009 /* OffersNetworkProvider.swift */,
+				56810BC52C58642C002AAC62 /* OffersMockProvider.swift */,
 				565893B32C5811E400D707FB /* OffersPayload.swift */,
 			);
 			path = Network;
@@ -182,8 +191,11 @@
 		56810BBE2C584CCA002AAC62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				56810BBA2C584ABF002AAC62 /* TitleView.swift */,
 				56810BBC2C584CAA002AAC62 /* HeaderView.swift */,
+				56810BBA2C584ABF002AAC62 /* TitleView.swift */,
+				56810BC12C585663002AAC62 /* OfferView.swift */,
+				56810BC32C585AB0002AAC62 /* SelectionView.swift */,
+				56810BC72C587754002AAC62 /* BenefitsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,15 +332,19 @@
 			files = (
 				56810BB82C58329F002AAC62 /* OffersManager.swift in Sources */,
 				56401A1B2C57E80600D75659 /* OffersViewController.swift in Sources */,
+				56810BC42C585AB0002AAC62 /* SelectionView.swift in Sources */,
 				565893B42C5811E400D707FB /* OffersPayload.swift in Sources */,
 				565893B72C58202500D707FB /* UIImageView.swift in Sources */,
 				56401A172C57E80600D75659 /* AppDelegate.swift in Sources */,
 				560728932C57F8A40092D009 /* OffersNetworkProvider.swift in Sources */,
 				56401A212C57E80600D75659 /* NewsApp.xcdatamodeld in Sources */,
+				56810BC82C587754002AAC62 /* BenefitsView.swift in Sources */,
+				56810BC22C585663002AAC62 /* OfferView.swift in Sources */,
 				56810BBD2C584CAA002AAC62 /* HeaderView.swift in Sources */,
 				56401A192C57E80600D75659 /* SceneDelegate.swift in Sources */,
 				565893B92C582EF500D707FB /* OffersViewConfiguration.swift in Sources */,
 				56810BBB2C584ABF002AAC62 /* TitleView.swift in Sources */,
+				56810BC62C58642C002AAC62 /* OffersMockProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

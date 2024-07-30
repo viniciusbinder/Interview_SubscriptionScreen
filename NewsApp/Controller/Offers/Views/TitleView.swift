@@ -51,7 +51,7 @@ class TitleView: UIView {
             
             subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+            subtitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     
