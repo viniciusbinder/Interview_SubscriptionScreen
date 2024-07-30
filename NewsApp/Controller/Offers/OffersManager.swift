@@ -21,19 +21,15 @@ class OffersManager {
     }
 
     /// Fetches screen data payload.
-    /// If offers are the same as stored, use stored offers,
-    /// else save the new offers and use them instead.
-    func loadViewConfiguration() async throws -> OffersViewConfiguration {
-        let payload = try await provider.fetchOffers()
-        let fetchedOffers = payload.record.subscription.offers
-        guard let storedOffers = Offers(from: await loadOffers()) else {
-            return OffersViewConfiguration(from: payload)
-        }
-        if fetchedOffers == storedOffers {
-            return OffersViewConfiguration(from: payload, with: storedOffers)
+    /// If payload is the same as stored use stored, else save and use new payload.
+    func loadViewConfiguration() async throws -> OffersViewConfiguration? {
+        let payload = try await provider.fetchPayload()
+        let configurations = await loadConfigurations()
+
+        if let last = configurations.last, payload.id == last.id {
+            return last
         } else {
-            await saveOffers(fetchedOffers.arrayed)
-            return OffersViewConfiguration(from: payload)
+            return await saveConfiguration(from: payload)
         }
     }
 }
@@ -47,33 +43,47 @@ extension OffersManager {
         return appDelegate.persistentContainer.viewContext
     }
 
-    private func saveOffers(_ offers: [SubscriptionOffer]) {
+    private func saveConfiguration(from payload: OffersPayload) -> OffersViewConfiguration? {
         guard let context else {
             print("Failed to save offers: Missing container context")
-            return
+            return nil
         }
 
-        for offer in offers {
-            let entity = Offer(context: context)
-            entity.information = offer.description
-            entity.price = offer.price
-        }
+        let entity = OffersViewConfiguration(context: context)
+        entity.id = payload.id
+
+        let subscription = payload.record.subscription
+        entity.headerLogo = payload.record.headerLogo
+        entity.pageStyle = subscription.pageStyle
+        entity.coverImage = subscription.coverImage
+        entity.subscribeTitle = subscription.subscribeTitle
+        entity.subscribeSubtitle = subscription.subscribeSubtitle
+        entity.benefits = subscription.benefits
+        entity.disclaimer = subscription.disclaimer
+
+        let offers = subscription.offers
+        entity.offer1Price = offers.offer1.price
+        entity.offer1Description = offers.offer1.description
+        entity.offer2Price = offers.offer2.price
+        entity.offer2Description = offers.offer2.description
 
         do {
             try context.save()
+            return entity
         } catch {
             print("Failed to save offers")
+            return nil
         }
     }
 
-    private func loadOffers() -> [Offer] {
+    private func loadConfigurations() -> [OffersViewConfiguration] {
         guard let context else {
             print("Failed to load offers: Missing container context")
             return []
         }
 
         do {
-            let request: NSFetchRequest<Offer> = Offer.fetchRequest()
+            let request: NSFetchRequest<OffersViewConfiguration> = OffersViewConfiguration.fetchRequest()
             return try context.fetch(request)
         } catch {
             print("Failed to load offers")

@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Offer" representedClassName="Offer" syncable="YES" codeGenerationType="class">
-        <attribute name="information" attributeType="String"/>
-        <attribute name="price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    <entity name="OffersViewConfiguration" representedClassName="OffersViewConfiguration" syncable="YES" codeGenerationType="class">
+        <attribute name="benefits" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="coverImage" attributeType="String"/>
+        <attribute name="disclaimer" attributeType="String"/>
+        <attribute name="headerLogo" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="offer1Description" attributeType="String"/>
+        <attribute name="offer1Price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="offer2Description" attributeType="String"/>
+        <attribute name="offer2Price" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="pageStyle" attributeType="String"/>
+        <attribute name="subscribeSubtitle" attributeType="String"/>
+        <attribute name="subscribeTitle" attributeType="String"/>
     </entity>
 </model>

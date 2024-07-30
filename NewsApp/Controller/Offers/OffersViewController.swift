@@ -88,21 +88,23 @@ class OffersViewController: UIViewController {
     private func loadConfiguration() {
         Task {
             do {
-                let config = try await manager.loadViewConfiguration()
+                guard let config = try await manager.loadViewConfiguration() else {
+                    print("Could not load view configuration")
+                    return
+                }
 
-                header.setImage(config.headerLogo)
-                coverImage.loadFromURL(config.coverImage)
-                titleView.setTitle(config.subscribeTitle)
-                titleView.setSubtitle(config.subscribeSubtitle)
+                header.setImage(config.headerLogo ?? "")
+                coverImage.loadFromURL(config.coverImage ?? "")
+                titleView.setTitle(config.subscribeTitle ?? "")
+                titleView.setSubtitle(config.subscribeSubtitle ?? "")
 
-                let offer1 = config.offers.offer1, offer2 = config.offers.offer2
-                selectionView.setOffer1(offer1.price, description: offer1.description)
-                selectionView.setOffer2(offer2.price, description: offer2.description)
-                selectionView.setSelection(offer1.price, true)
-                self.selectedOffer = offer1.price
+                selectionView.setOffer1(config.offer1Price, description: config.offer1Description ?? "")
+                selectionView.setOffer2(config.offer2Price, description: config.offer2Description ?? "")
+                selectionView.setSelection(config.offer1Price, true)
+                self.selectedOffer = config.offer1Price
 
-                benefitsView.setBenefits(config.benefits)
-                subscribeView.setDisclaimer(config.disclaimer)
+                benefitsView.setBenefits(config.benefits ?? [])
+                subscribeView.setDisclaimer(config.disclaimer ?? "")
             } catch {
                 print(error)
                 // TODO: show offer unavailability screen

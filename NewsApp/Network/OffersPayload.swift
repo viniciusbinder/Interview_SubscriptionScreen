@@ -8,6 +8,7 @@
 import Foundation
 
 struct OffersPayload: Decodable {
+    let id: UUID
     let record: Record
 }
 
@@ -39,4 +40,19 @@ struct Subscription: Decodable {
         case benefits
         case disclaimer
     }
+}
+
+struct Offers: Decodable {
+    let offer1: OfferInformation
+    let offer2: OfferInformation
+
+    enum CodingKeys: String, CodingKey {
+        case offer1 = "id0"
+        case offer2 = "id1"
+    }
+}
+
+struct OfferInformation: Decodable {
+    let price: Double
+    let description: String
 }

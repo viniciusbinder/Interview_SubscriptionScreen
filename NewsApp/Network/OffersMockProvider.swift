@@ -8,7 +8,7 @@
 import Foundation
 
 class OffersMockProvider: OffersProvider {
-    func fetchOffers() async throws -> OffersPayload {
+    func fetchPayload() async throws -> OffersPayload {
         let data = Data(Self.mockOffersJSON.utf8)
         let payload = try JSONDecoder().decode(OffersPayload.self, from: data)
         return payload
@@ -16,6 +16,7 @@ class OffersMockProvider: OffersProvider {
 
     static let mockOffersJSON = """
     {
+        "id": "3ce0ee9d-3045-445c-b56e-aebcd16c9e0b",
         "record": {
           "header_logo": "https://cdn.us-corp-qa-3.vip.tnqa.net/nativeapp.www.us-corp-qa-3.tnqa.net/content/tncms/assets/v3/media/9/e0/9e0dae9e-240b-11ef-9068-000c299ccbc9/6661be72a43be.image.png?_fallback=1",
           "subscription": {

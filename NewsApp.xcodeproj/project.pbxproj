@@ -19,7 +19,6 @@
 		56401A3D2C57E80700D75659 /* NewsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56401A3C2C57E80700D75659 /* NewsAppUITestsLaunchTests.swift */; };
 		565893B42C5811E400D707FB /* OffersPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565893B32C5811E400D707FB /* OffersPayload.swift */; };
 		565893B72C58202500D707FB /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565893B62C58202500D707FB /* UIImageView.swift */; };
-		565893B92C582EF500D707FB /* OffersViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565893B82C582EF500D707FB /* OffersViewConfiguration.swift */; };
 		56810BB82C58329F002AAC62 /* OffersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BB72C58329F002AAC62 /* OffersManager.swift */; };
 		56810BBB2C584ABF002AAC62 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BBA2C584ABF002AAC62 /* TitleView.swift */; };
 		56810BBD2C584CAA002AAC62 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56810BBC2C584CAA002AAC62 /* HeaderView.swift */; };
@@ -67,7 +66,6 @@
 		56401A3C2C57E80700D75659 /* NewsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		565893B32C5811E400D707FB /* OffersPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersPayload.swift; sourceTree = "<group>"; };
 		565893B62C58202500D707FB /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
-		565893B82C582EF500D707FB /* OffersViewConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewConfiguration.swift; sourceTree = "<group>"; };
 		56810BB72C58329F002AAC62 /* OffersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersManager.swift; sourceTree = "<group>"; };
 		56810BBA2C584ABF002AAC62 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		56810BBC2C584CAA002AAC62 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				56810BBE2C584CCA002AAC62 /* Views */,
 				56401A1A2C57E80600D75659 /* OffersViewController.swift */,
 				56810BD22C58A1EA002AAC62 /* OfferSelectionDelegate.swift */,
-				565893B82C582EF500D707FB /* OffersViewConfiguration.swift */,
 				56810BB72C58329F002AAC62 /* OffersManager.swift */,
 			);
 			path = Offers;
@@ -364,7 +361,6 @@
 				56810BBD2C584CAA002AAC62 /* HeaderView.swift in Sources */,
 				56810BCC2C58897C002AAC62 /* SubscribeView.swift in Sources */,
 				56401A192C57E80600D75659 /* SceneDelegate.swift in Sources */,
-				565893B92C582EF500D707FB /* OffersViewConfiguration.swift in Sources */,
 				56810BCE2C588D3A002AAC62 /* String.swift in Sources */,
 				56810BBB2C584ABF002AAC62 /* TitleView.swift in Sources */,
 				56810BC62C58642C002AAC62 /* OffersMockProvider.swift in Sources */,
