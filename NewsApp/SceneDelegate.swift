@@ -70,6 +70,32 @@ extension SceneDelegate {
     func fetchPayload(completion: @escaping (OffersViewConfiguration) -> Void) async {
         let offersProvider = OffersNetworkProvider()
         let offersManager = OffersManager(provider: offersProvider)
+
+        // Use mock provider for UI tests
+        let isUITesting = ProcessInfo.processInfo.arguments.contains("Testing")
+        if isUITesting {
+            await fetchMock(offersManager: offersManager, completion: completion)
+            return
+        }
+
+        do {
+            // Fetch payload from network
+            if let config = try await offersManager.loadViewConfiguration() {
+                await MainActor.run {
+                    completion(config)
+                }
+            }
+        } catch {
+            // Use mock provider if network fails
+            await fetchMock(offersManager: offersManager, completion: completion)
+        }
+    }
+
+    func fetchMock(offersManager: OffersManager,
+                   completion: @escaping (OffersViewConfiguration) -> Void) async
+    {
+        let mockProvider = OffersMockProvider()
+        offersManager.setProvider(mockProvider)
         do {
             if let config = try await offersManager.loadViewConfiguration() {
                 await MainActor.run {
@@ -77,17 +103,7 @@ extension SceneDelegate {
                 }
             }
         } catch {
-            let mockProvider = OffersMockProvider()
-            offersManager.setProvider(mockProvider)
-            do {
-                if let config = try await offersManager.loadViewConfiguration() {
-                    await MainActor.run {
-                        completion(config)
-                    }
-                }
-            } catch {
-                print("Could not load view configuration: ", error)
-            }
+            print("Could not mock view configuration: ", error)
         }
     }
 }

@@ -19,6 +19,7 @@ class SelectionView: UIView {
         let view = OfferView()
         view.widthAnchor.constraint(equalToConstant: 130).isActive = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "Offer1View"
         return view
     }()
 
@@ -26,6 +27,7 @@ class SelectionView: UIView {
         let view = OfferView()
         view.widthAnchor.constraint(equalToConstant: 130).isActive = true
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "Offer2View"
         return view
     }()
     

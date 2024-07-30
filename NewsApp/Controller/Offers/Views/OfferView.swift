@@ -16,7 +16,6 @@ class OfferView: UIView {
     
     private let priceLabel: UILabel = {
         let view = UILabel()
-        view.text = ""
         view.font = .systemFont(ofSize: 32, weight: .bold)
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -25,7 +24,6 @@ class OfferView: UIView {
 
     private let descriptionLabel: UILabel = {
         let view = UILabel()
-        view.text = ""
         view.font = .systemFont(ofSize: 12)
         view.textColor = .darkGray
         view.textAlignment = .center

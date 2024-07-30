@@ -17,8 +17,9 @@ class OffersViewController: UIViewController {
 
     private let scrollView: UIScrollView = {
         let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "ScrollView"
         return view
     }()
 
@@ -27,6 +28,7 @@ class OffersViewController: UIViewController {
         view.axis = .vertical
         view.spacing = 0
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "ContainerView"
         return view
     }()
 
@@ -36,14 +38,16 @@ class OffersViewController: UIViewController {
         let image = UIImage(systemName: "chevron.left")?.withConfiguration(configuration)
         view.setImage(image, for: .normal)
         view.tintColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.zPosition = 100
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "BackButton"
         return view
     }()
 
     private let header: HeaderView = {
         let view = HeaderView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.accessibilityIdentifier = "Header"
         return view
     }()
 
@@ -51,16 +55,33 @@ class OffersViewController: UIViewController {
         let view = UIImageView(image: nil)
         view.contentMode = .scaleAspectFit
         view.heightAnchor.constraint(equalToConstant: 220).isActive = true
+        view.accessibilityIdentifier = "CoverImage"
         return view
     }()
 
-    private let titleView = TitleView()
+    private let titleView: TitleView = {
+        let view = TitleView()
+        view.accessibilityIdentifier = "TitleView"
+        return view
+    }()
 
-    private let selectionView = SelectionView()
+    private let selectionView: SelectionView = {
+        let view = SelectionView()
+        view.accessibilityIdentifier = "SelectionView"
+        return view
+    }()
 
-    private let benefitsView = BenefitsView()
+    private let benefitsView: BenefitsView = {
+        let view = BenefitsView()
+        view.accessibilityIdentifier = "BenefitsView"
+        return view
+    }()
 
-    private let subscribeView = SubscribeView()
+    private let subscribeView: SubscribeView = {
+        let view = SubscribeView()
+        view.accessibilityIdentifier = "SubscribeView"
+        return view
+    }()
 
     // MARK: Initialization
 

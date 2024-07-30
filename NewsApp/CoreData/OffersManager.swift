@@ -24,10 +24,10 @@ class OffersManager {
     /// If payload is the same as stored use stored, else save and use new payload.
     func loadViewConfiguration() async throws -> OffersViewConfiguration? {
         let payload = try await provider.fetchPayload()
-        let configurations = await loadConfigurations()
+        let configuration = await loadConfiguration()
 
-        if let last = configurations.last, payload.id == last.id {
-            return last
+        if let configuration, payload.id == configuration.id {
+            return configuration
         } else {
             return await saveConfiguration(from: payload)
         }
@@ -48,6 +48,8 @@ extension OffersManager {
             print("Failed to save offers: Missing container context")
             return nil
         }
+
+        deleteConfiguration()
 
         let entity = OffersViewConfiguration(context: context)
         entity.id = payload.id
@@ -76,18 +78,36 @@ extension OffersManager {
         }
     }
 
-    private func loadConfigurations() -> [OffersViewConfiguration] {
+    private func loadConfiguration() -> OffersViewConfiguration? {
         guard let context else {
             print("Failed to load offers: Missing container context")
-            return []
+            return nil
         }
 
         do {
             let request: NSFetchRequest<OffersViewConfiguration> = OffersViewConfiguration.fetchRequest()
-            return try context.fetch(request)
+            let configs = try context.fetch(request)
+            return configs.last
         } catch {
             print("Failed to load offers")
-            return []
+            return nil
+        }
+    }
+
+    private func deleteConfiguration() {
+        guard let context else {
+            print("Failed to load offers: Missing container context")
+            return
+        }
+
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = OffersViewConfiguration.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try context.execute(deleteRequest)
+            try context.save()
+        } catch {
+            print("Failed to delete persons: \(error)")
         }
     }
 }

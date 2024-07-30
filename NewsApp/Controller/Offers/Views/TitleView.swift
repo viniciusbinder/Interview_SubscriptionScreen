@@ -10,7 +10,6 @@ import UIKit
 class TitleView: UIView {
     private let titleLabel: UILabel = {
         let view = UILabel()
-        view.text = ""
         view.font = .systemFont(ofSize: 24, weight: .bold)
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -19,7 +18,6 @@ class TitleView: UIView {
 
     private let subtitleLabel: UILabel = {
         let view = UILabel()
-        view.text = ""
         view.font = .systemFont(ofSize: 12)
         view.textColor = .darkGray
         view.textAlignment = .center

@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
         button.backgroundColor = .darkBlue
         button.heightAnchor.constraint(equalToConstant: 60).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "NavigateToOffersButton"
         return button
     }()
 
@@ -34,6 +35,7 @@ class HomeViewController: UIViewController {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.color = .white
         spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.accessibilityIdentifier = "LoadingSpinner"
         spinner.startAnimating()
         return spinner
     }()
@@ -41,6 +43,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        view.accessibilityIdentifier = "HomeViewController"
 
         setupButton()
     }

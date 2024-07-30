@@ -18,6 +18,7 @@ class SubscribeView: UIView {
         button.backgroundColor = .darkBlue
         button.heightAnchor.constraint(equalToConstant: 44).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.accessibilityIdentifier = "SubscribeButton"
         return button
     }()
 

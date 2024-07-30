@@ -16,13 +16,13 @@ class OffersMockProvider: OffersProvider {
 
     static let mockOffersJSON = """
     {
-        "id": "39e0ee9d-3045-445c-b56e-aebcd16c9e0b",
+        "id": "39e0ee9d-3045-445c-b56e-aebcd16c9e0c",
         "record": {
           "header_logo": "https://cdn.us-corp-qa-3.vip.tnqa.net/nativeapp.www.us-corp-qa-3.tnqa.net/content/tncms/assets/v3/media/9/e0/9e0dae9e-240b-11ef-9068-000c299ccbc9/6661be72a43be.image.png?_fallback=1",
           "subscription": {
             "offer_page_style": "square",
             "cover_image": "https://cdn.us-corp-qa-3.vip.tnqa.net/nativeapp.www.us-corp-qa-3.tnqa.net/content/tncms/assets/v3/media/8/18/818482c0-09d7-11ed-ad65-000c299ccbc9/62dac9c7602ba.image.jpg?resize=750%2C420",
-            "subscribe_title": "*MOCK* Get Unlimited Access",
+            "subscribe_title": "*MOCK*",
             "subscribe_subtitle": "STLToday.com is where your story lives. Stay in the loop with unlimited access to articles, podcasts, videos and the E-edition. Plus unlock breaking news and customized real-time alerts for sports, weather, and more.",
             "offers": {
               "id0": {
