@@ -22,6 +22,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController(rootViewController: homeViewController)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+
+        Task {
+            await fetchPayload { config in
+                if let navigationViewController = self.window?.rootViewController as? UINavigationController,
+                   let homeViewController = navigationViewController.topViewController as? HomeViewController
+                {
+                    homeViewController.config = HomeViewConfiguration(offersConfiguration: config)
+                }
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -53,5 +63,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+}
+
+extension SceneDelegate {
+    func fetchPayload(completion: @escaping (OffersViewConfiguration) -> Void) async {
+        let offersProvider = OffersNetworkProvider()
+        let offersManager = OffersManager(provider: offersProvider)
+        do {
+            if let config = try await offersManager.loadViewConfiguration() {
+                await MainActor.run {
+                    completion(config)
+                }
+            }
+        } catch {
+            let mockProvider = OffersMockProvider()
+            offersManager.setProvider(mockProvider)
+            do {
+                if let config = try await offersManager.loadViewConfiguration() {
+                    await MainActor.run {
+                        completion(config)
+                    }
+                }
+            } catch {
+                print("Could not load view configuration: ", error)
+            }
+        }
     }
 }

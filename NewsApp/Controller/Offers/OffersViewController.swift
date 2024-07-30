@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class OffersViewController: UIViewController {
-    private var manager: OffersManager
+    private var config: OffersViewConfiguration
 
     private var selectedOffer: Double?
 
@@ -64,8 +64,8 @@ class OffersViewController: UIViewController {
 
     // MARK: Initialization
 
-    init(provider: OffersProvider) {
-        self.manager = OffersManager(provider: provider)
+    init(config: OffersViewConfiguration) {
+        self.config = config
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -87,28 +87,18 @@ class OffersViewController: UIViewController {
 
     private func loadConfiguration() {
         Task {
-            do {
-                guard let config = try await manager.loadViewConfiguration() else {
-                    print("Could not load view configuration")
-                    return
-                }
+            header.setImage(config.headerLogo ?? "")
+            coverImage.loadFromURL(config.coverImage ?? "")
+            titleView.setTitle(config.subscribeTitle ?? "")
+            titleView.setSubtitle(config.subscribeSubtitle ?? "")
 
-                header.setImage(config.headerLogo ?? "")
-                coverImage.loadFromURL(config.coverImage ?? "")
-                titleView.setTitle(config.subscribeTitle ?? "")
-                titleView.setSubtitle(config.subscribeSubtitle ?? "")
+            selectionView.setOffer1(config.offer1Price, description: config.offer1Description ?? "")
+            selectionView.setOffer2(config.offer2Price, description: config.offer2Description ?? "")
+            selectionView.setSelection(config.offer1Price, true)
+            self.selectedOffer = config.offer1Price
 
-                selectionView.setOffer1(config.offer1Price, description: config.offer1Description ?? "")
-                selectionView.setOffer2(config.offer2Price, description: config.offer2Description ?? "")
-                selectionView.setSelection(config.offer1Price, true)
-                self.selectedOffer = config.offer1Price
-
-                benefitsView.setBenefits(config.benefits ?? [])
-                subscribeView.setDisclaimer(config.disclaimer ?? "")
-            } catch {
-                print(error)
-                // TODO: show offer unavailability screen
-            }
+            benefitsView.setBenefits(config.benefits ?? [])
+            subscribeView.setDisclaimer(config.disclaimer ?? "")
         }
     }
 
