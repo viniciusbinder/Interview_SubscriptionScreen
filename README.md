@@ -13,7 +13,7 @@
 - Zero constraint console warnings
 - Delegate pattern for selecting the offer
 - Dependency Injection for payload provider
-- Mock payload for when network fetching fails
+- Fallback mock payload for when network fetching fails
 
 ### Showcase
 <img src="NewsAppGIF.gif" alt="til" width="30%" height="30%">
