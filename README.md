@@ -1,15 +1,19 @@
-# NewsApp
+# Simple UIKit Subscription Screen
 
-- Home Screen that leads to the Offers Screen
-- Programmatic UIKit (ViewCode) + AutoLayout
+ iOS Interview Exercise
+
+#### Requirements ✅
+- Home Screen that leads to a Subscription Screen
+- AutoLayout Programmatic UIKit (View Code)
 - Swift Concurrency for fetching the payload from the network on launch
 - CoreData storage of the payload for comparison on launch
-- ✅ Full set of UI tests using XCUITest
-- Delegate Pattern for selecting the offer
+
+#### Development ✅
+- Full set of UI tests using XCUITest
+- Zero constraint console warnings
+- Delegate pattern for selecting the offer
 - Dependency Injection for payload provider
 - Mock payload for when network fetching fails
-- Zero constraint console warnings
-- Video and GIF of the entire functionality
 
 ### Showcase
 <img src="NewsAppGIF.gif" alt="til" width="30%" height="30%">
